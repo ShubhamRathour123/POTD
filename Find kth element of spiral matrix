@@ -1,0 +1,72 @@
+
+
+class Solution
+{
+    int findK(int A[][], int n, int m, int k)
+    {
+        int count=0;
+        int ans=0;
+        int s=Math.max(n,m);
+        int arr[]=new int[s];
+        int left=0,right=m-1;
+        int top=0,bottom=n-1;
+      while(left<=right && top<=bottom)
+      {
+        //Left to right
+        for(int i=left;i<=right;i++)
+        {
+            arr[i]=A[top][i];
+            count++;
+            if(k==count)
+            {
+                ans=arr[i];
+                return ans;
+            }
+        }
+        top++;
+        //Top to bottom
+        for(int i=top;i<=bottom;i++)
+        {
+            arr[i]=A[i][right];
+            count++;
+            if(k==count)
+            {
+                ans=arr[i];
+                return ans;
+            }
+        }
+        right--;
+        //right to left
+       if(top<=bottom)
+       {
+        for(int i=right;i>=left;i--)
+        {
+            arr[i]=A[bottom][i];
+            count++;
+            if(k==count)
+            {
+                ans=arr[i];
+                return ans;
+            }
+        }
+        bottom--;
+       }
+        //Bottom to top
+       if(left<=right)
+       {
+        for(int i=bottom;i>=top;i--)
+        {
+            arr[i]=A[i][left];
+            count++;
+            if(k==count)
+            {
+                ans=arr[i];
+                return ans;
+            }
+        }
+        left++;
+       }
+      }
+      return ans;
+    }
+}
