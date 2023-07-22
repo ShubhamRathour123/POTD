@@ -1,0 +1,24 @@
+class Solution
+{
+    public Node removeDuplicates(Node head) 
+    {
+         HashSet<Integer> hs=new HashSet<>();
+         Node prev=null;
+         Node curr=head;
+         while(curr!=null)
+         {
+             int val=curr.data;
+             if(hs.contains(val))
+             {
+                prev.next=curr.next;
+             }
+             else
+             {
+                 hs.add(val);
+                 prev=curr;
+             }
+             curr=curr.next;
+         }
+         return head;
+    }
+}
